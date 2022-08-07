@@ -14,11 +14,11 @@
 
 static t_stk *sx(t_stk *list)
 {
-	if (list && !(list->next))
-		return (list);
 	t_stk	*keep;
 	t_stk	*tmp;
 
+	if (list && !(list->next))
+		return (list);
 	keep = list->next;
 	tmp = keep->next;
 	keep->next = list;

@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <unistd.h>
+# include <stddef.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
 # include "./printf/ft_printf.h"
@@ -25,14 +25,16 @@ typedef struct s_stk
 	struct s_stk	*next;
 } t_stk;
 
-int		checknumber(char **str);
-int		stacklen(t_stk *a);
-void	init(t_stk *stk);
-void	printstack(t_stk *a, t_stk *b);
+
 t_stk	*findindex(t_stk *a);
 t_stk	*args(t_stk *a, t_stk *b, int ac, char **av);
 t_stk	*pushswap(t_stk *stk, char **av, int c);
+int		checknumber(char **str);
+int		stacklen(t_stk *a);
+int		*prepsort(t_stk *a, int *i);
+void	printstack(t_stk *a, t_stk *b);
 void	minisorting(t_stk **a, t_stk **b);
+void	undersix(t_stk**a, t_stk **b, int len);
 
 
 

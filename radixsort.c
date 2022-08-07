@@ -12,13 +12,6 @@
 
 #include "push_swap.h"
 
-static int maxbits(int bit, int max)
-{
-    while (max >> bit != 0)
-        bit++;
-    return (bit);
-}
-
 static int isitsorted(t_stk *a, t_stk *b)
 {
     t_stk   *tmp;
@@ -37,12 +30,29 @@ static int isitsorted(t_stk *a, t_stk *b)
     index = tmp->index;
     while (tmp)
     {
-        if (index > tmp->index)
+        if (index < tmp->index)
             return (1);
         tmp = tmp->next;
         index = tmp->index;
     }
     return (0);
+}
+
+static int isitsame(t_stk *a, t_stk *b)
+{
+    t_stk   *tmp;
+    int     number;
+
+    tmp = a;
+    number = tmp->number;
+    tmp = tmp->next;
+    while (tmp)
+    {
+        if (number == tmp->number)
+            return (0);
+        number = tmp->number;
+        tmp = tmp->next;
+    }
 }
 
 void   radixsorting(t_stk **a, t_stk **b)
@@ -57,12 +67,14 @@ void   radixsorting(t_stk **a, t_stk **b)
         while (size--)
         {
             if ((*a)->index >> i & 1)
-                ra(*a);
+                ra(a);
             else
-                pb(*a, *b);
-            if (!(isitsorted()))
+                pb(a, b);
+            if (!isitsorted(*a,*b))
                 break;
         }   
         i++;
+        if (!isitsorted(*a, *b))
+            break;
     }
 }

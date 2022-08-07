@@ -47,7 +47,7 @@ static void quicksort(int number[], int first, int last)
 	}
 }
 
-static int	*prepsort(t_stk *a, int *i)
+int	*prepsort(t_stk *a, int *i)
 {
 	t_stk	*tmp;
 	int		index;
@@ -98,8 +98,17 @@ t_stk	*findindex(t_stk *a)
 
 void	minisorting(t_stk **a, t_stk **b)
 {
+	int	len;
 
-
-
+	len = stacklen(*a);
+	if (len == 2)
+	{
+		if ((*a)->index == 1)
+			sa(a);
+	}
+	if (len == 3)
+		triple(a);
+	else 
+		undersix(*a, *b, len);
 }
 

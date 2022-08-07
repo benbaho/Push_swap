@@ -78,7 +78,7 @@ t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
 		c++;
 		a = a->next;
 	}
-	if (a < 7)
+	if (c < 7)
 		minisorting(a, b);
 	else
 		radixsorting(a, b);
@@ -95,4 +95,87 @@ int	stacklen(t_stk *a)
 		i++;
 	}
 	return (i);
+}
+
+void	triple(t_stk **a)
+{
+	int	*i;
+
+	i = prepsort(*a, *i);
+
+	if (i[0] > i[1] && i[2] > i[1] && i[2] > i[0])
+		sa(a);
+	else if (i[0] < i[1] && i[2] < i[1] && i[0] > i[2])
+		rra(a);
+	else if (i[0] > i[2] && i[0] > i[1] && i[2] > i[1])
+		ra(a);
+	else if (i[0] < i[1] && i[0] < i[2] && i[2] < i[1])
+	{
+		sa(a);
+		ra(a);
+	}
+	else if (i[0] > i[2] && i[1] > i[2] && i[0] > i[1])
+	{
+		sa(a);
+		rra(a);
+	}
+}
+
+static int	control(t_stk **a, int number, int mod)
+{
+	t_stk 	*tmp;
+	int		i;
+
+	i = mod;
+	tmp = a;
+	while (tmp)
+	{
+		if (tmp->index == number && mod == 0)
+			return (i);
+		if (tmp->number == number)
+			return (0);
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}
+
+static void seperate(t_stk **a, t_stk **b, int max, int len)
+{
+	while (len)
+	{
+		if ((*a)->index == max)
+		{
+			pb(a, b);
+			max--;
+			len--;
+			continue;
+		}
+		if ((*a)->index > (*a)->next->index)
+			sa(a);
+		if ((stacklen(*a) / 2) < control(a, max, 0))
+			rra(a);
+		else
+			ra(a);
+	}
+}
+
+void	undersix(t_stk **a, t_stk **b, int len)
+{
+	int	i;
+
+	seperate(a, b, len - 1, len - 3);
+	if (len == 4 || len == 5)
+		triple(a);
+	else if (len == 6)
+	{
+		triple(a);
+		triple(b);
+	}
+	i = stacklen(*b);
+	while (i--)
+	{
+		pa(a, b);
+		ra(a);
+	}
 }
