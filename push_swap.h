@@ -31,12 +31,14 @@ t_stk	*args(t_stk *a, t_stk *b, int ac, char **av);
 t_stk	*pushswap(t_stk *stk, char **av, int c);
 int		checknumber(char **str);
 int		stacklen(t_stk *a);
+int 	*getindex(t_stk *a);
 int		*prepsort(t_stk *a, int *i);
 void	triple(t_stk **a);
 void 	radixsorting(t_stk **a, t_stk **b);
 void	printstack(t_stk *a, t_stk *b);
 void	minisorting(t_stk **a, t_stk **b);
 void	undersix(t_stk**a, t_stk **b, int len);
+long long int	ft_atoi2(const char *str);
 
 
 

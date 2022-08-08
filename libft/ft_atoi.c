@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
 	long long int	number;
 	int				sign;

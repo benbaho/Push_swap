@@ -12,6 +12,37 @@
 
 #include "push_swap.h"
 
+t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
+{
+	char	**str;
+	int			c;
+	
+	a = 0;
+	b = 0;
+	c = 0;
+	if (ac == 2)
+	{
+		str = ft_split(av[1], ' ');
+		if ((!checknumber(str)))
+			exit (0);
+		a = pushswap(a, str, 0);
+		a = findindex(a);
+	}
+	else
+	{
+		if (!(checknumber(av)))
+			exit (0);
+		a =  pushswap(a, av, 1);
+		a = findindex(a);
+	}
+	c = stacklen(a);
+	if (c < 6)
+		minisorting(&a, &b);
+	else
+		radixsorting(&a, &b);
+	return (a);
+}
+
 static void swap(int *x, int *y)
 {
 	int c;
@@ -94,22 +125,4 @@ t_stk	*findindex(t_stk *a)
 	}
 	free (i);
 	return (a);
-}
-
-void	minisorting(t_stk **a, t_stk **b)
-{
-	int	len;
-	
-	len = stacklen(*a);
-	if (len == 2)
-	{
-		exit(1);
-		if ((*a)->index == 1)
-			sa(a);
-	}
-	if (len == 3)
-		triple(a);
-	else 
-		undersix(a, b, len);	
-
 }

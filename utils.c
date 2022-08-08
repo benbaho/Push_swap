@@ -12,106 +12,41 @@
 
 #include "push_swap.h"
 
-int	checknumber(char **str)
+void	minisorting(t_stk **a, t_stk **b)
 {
-	int	i;
-
-	i = 1;
-	while(str[i])
-	{
-		if(!ft_atoi(str[i]))
-		{
-			ft_printf("Wrong type\n");
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-void	printstack(t_stk *a, t_stk *b)
-{
-	ft_printf("a : ");
-	while (a)
-	{
-		ft_printf("%d(%d)", a->number, a->index);
-		a = a->next;
-		if (a)
-			ft_printf(" - ");
-	}
-	ft_printf("\nb : ");
-	while (b)
-	{
-		ft_printf("%d(%d)", b->number, b->index);
-		b = b->next;
-		if (b)
-			ft_printf(" - ");
-	}
-	ft_printf("\n");
-}
-
-t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
-{
-	char	**str;
-	int			c;
+	int	len;
 	
-	a = 0;
-	b = 0;
-	c = 0;
-	if (ac == 2)
+	len = stacklen(*a);
+	if (len == 1)
+		return ;
+	else if (len == 2)
 	{
-		str = ft_split(av[1], ' ');
-		if ((!checknumber(str)))
-			exit (0);
-		a = pushswap(a, str, 0);
-		a = findindex(a);
+		if ((*a)->index == 1)
+			sa(a);
 	}
+	else if (len == 3)
+		triple(a);
 	else
-	{
-		if (!(checknumber(av)))
-			exit (0);
-		a =  pushswap(a, av, 1);
-		a = findindex(a);
-	}	
-	c = stacklen(a);
-	if (c < 7)
-		minisorting(&a, &b);
-	else
-		radixsorting(&a, &b);
-	return (a);
-}
-
-int	stacklen(t_stk *a)
-{
-	int	i;
-
-	i = 0;
-	while (a)
-	{
-		a = a->next;
-		i++;
-	}
-	return (i);
+		undersix(a, b, len);
 }
 
 void	triple(t_stk **a)
 {
 	int	*i;
 
-	i = prepsort(*a, i);
-
-	if (i[0] > i[1] && i[2] > i[1] && i[2] > i[0])
+	i = getindex(*a);
+	if (i[0] > i[1] && i[1] < i[2] && i[2] > i[0])
 		sa(a);
-	else if (i[0] < i[1] && i[2] < i[1] && i[0] > i[2])
+	else if (i[0] < i[1] && i[0] > i[2] && i[2] < i[1])
 		rra(a);
-	else if (i[0] > i[2] && i[0] > i[1] && i[2] > i[1])
+	else if (i[0] > i[1] && i[0] > i[2] && i[2] > i[1])
 		ra(a);
 	else if (i[0] < i[1] && i[0] < i[2] && i[2] < i[1])
 	{
 		sa(a);
 		ra(a);
 	}
-	else if (i[0] > i[2] && i[1] > i[2] && i[0] > i[1])
+	else if (i[0] > i[1] && i[0] > i[2] && i[2] < i[1])
 	{
 		sa(a);
 		rra(a);
