@@ -73,15 +73,11 @@ t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
 		a =  pushswap(a, av, 1);
 		a = findindex(a);
 	}	
-	while (a)
-	{
-		c++;
-		a = a->next;
-	}
+	c = stacklen(a);
 	if (c < 7)
-		minisorting(a, b);
+		minisorting(&a, &b);
 	else
-		radixsorting(a, b);
+		radixsorting(&a, &b);
 	return (a);
 }
 
@@ -89,6 +85,7 @@ int	stacklen(t_stk *a)
 {
 	int	i;
 
+	i = 0;
 	while (a)
 	{
 		a = a->next;
@@ -101,7 +98,7 @@ void	triple(t_stk **a)
 {
 	int	*i;
 
-	i = prepsort(*a, *i);
+	i = prepsort(*a, i);
 
 	if (i[0] > i[1] && i[2] > i[1] && i[2] > i[0])
 		sa(a);
@@ -127,7 +124,7 @@ static int	control(t_stk **a, int number, int mod)
 	int		i;
 
 	i = mod;
-	tmp = a;
+	tmp = *a;
 	while (tmp)
 	{
 		if (tmp->index == number && mod == 0)

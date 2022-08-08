@@ -99,16 +99,17 @@ t_stk	*findindex(t_stk *a)
 void	minisorting(t_stk **a, t_stk **b)
 {
 	int	len;
-
+	
 	len = stacklen(*a);
 	if (len == 2)
 	{
+		exit(1);
 		if ((*a)->index == 1)
 			sa(a);
 	}
 	if (len == 3)
 		triple(a);
 	else 
-		undersix(*a, *b, len);
-}
+		undersix(a, b, len);	
 
+}

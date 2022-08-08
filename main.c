@@ -6,7 +6,7 @@
 /*   By: bdurmus <bdurmus@student.42kocaeli.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 17:15:35 by bdurmus           #+#    #+#             */
-/*   Updated: 2022/08/08 10:28:22 by bdurmus          ###   ########.fr       */
+/*   Updated: 2022/08/08 11:44:58 by bdurmus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,12 @@ t_stk	*pushswap(t_stk *stk, char **av, int c)
 	return (stk);
 }
 
-
 int	main(int ac, char **av)
 {
 	t_stk	*a;
 	t_stk	*b;
-		
+
 	if (!(ac > 1))
 		return (0);
-	a = args(a, b, ac ,av);
-	
+		a = args (a, b, ac, av);
 }

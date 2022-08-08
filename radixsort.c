@@ -53,6 +53,7 @@ static int isitsame(t_stk *a, t_stk *b)
         number = tmp->number;
         tmp = tmp->next;
     }
+    return (1);
 }
 
 void   radixsorting(t_stk **a, t_stk **b)
@@ -74,7 +75,7 @@ void   radixsorting(t_stk **a, t_stk **b)
                 break;
         }   
         i++;
-        if (!isitsorted(*a, *b))
+        if (!isitsorted(*a, *b) || !isitsame(*a, *b))
             break;
     }
 }

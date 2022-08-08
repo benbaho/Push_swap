@@ -6,7 +6,7 @@
 /*   By: bdurmus <bdurmus@student.42kocaeli.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 12:02:34 by bdurmus           #+#    #+#             */
-/*   Updated: 2022/08/08 10:28:23 by bdurmus          ###   ########.fr       */
+/*   Updated: 2022/08/08 11:24:16 by bdurmus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_stk	*pushswap(t_stk *stk, char **av, int c);
 int		checknumber(char **str);
 int		stacklen(t_stk *a);
 int		*prepsort(t_stk *a, int *i);
+void	triple(t_stk **a);
+void 	radixsorting(t_stk **a, t_stk **b);
 void	printstack(t_stk *a, t_stk *b);
 void	minisorting(t_stk **a, t_stk **b);
 void	undersix(t_stk**a, t_stk **b, int len);
