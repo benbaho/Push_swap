@@ -50,4 +50,5 @@ int	main(int ac, char **av)
 	if (!(ac > 1))
 		return (0);
 		a = args (a, b, ac, av);
+
 }

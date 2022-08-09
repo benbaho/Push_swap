@@ -53,13 +53,13 @@ void	triple(t_stk **a)
 	}
 }
 
-static int	control(t_stk **a, int number, int mod)
+int	control(t_stk *a, int number, int mod)
 {
-	t_stk 	*tmp;
+	t_stk	*tmp;
 	int		i;
 
 	i = mod;
-	tmp = *a;
+	tmp = a;
 	while (tmp)
 	{
 		if (tmp->index == number && mod == 0)
@@ -72,7 +72,7 @@ static int	control(t_stk **a, int number, int mod)
 	return (i);
 }
 
-static void seperate(t_stk **a, t_stk **b, int max, int len)
+static void	seperate(t_stk **a, t_stk **b, int max, int len)
 {
 	while (len)
 	{
@@ -81,21 +81,21 @@ static void seperate(t_stk **a, t_stk **b, int max, int len)
 			pb(a, b);
 			max--;
 			len--;
-			continue;
+			continue ;
 		}
 		if ((*a)->index > (*a)->next->index)
 			sa(a);
-		if ((stacklen(*a) / 2) < control(a, max, 0))
+		if ((stacklen(*a) / 2) < control(*a, max, 0))
 			rra(a);
 		else
-			ra(a);
+			ra(a);	
 	}
+
 }
 
 void	undersix(t_stk **a, t_stk **b, int len)
 {
 	int	i;
-
 	seperate(a, b, len - 1, len - 3);
 	if (len == 4 || len == 5)
 		triple(a);

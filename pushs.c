@@ -14,25 +14,25 @@
 
 static void pushs(t_stk **a, t_stk **b)
 {
-	t_stk	*keep;
+	t_stk	*tmp;
 
-	if(!(*b))
+	if (!(*b))
 		return ;
-	
-	keep = *a;
-	*a = (*a)->next;
-	keep->next = *b;
+	tmp = *b;
+	*b = (*b)->next;
+	(*tmp).next = *a;
+	*a = tmp;
 }
 
 void pb(t_stk **a, t_stk **b)
 {
-	pushs(a, b);
+	pushs(b, a);
 	ft_printf("pb\n");
 }
 
 void pa(t_stk **a, t_stk **b)
 {
-	pushs(b, a);
+	pushs(a, b);
 	ft_printf("pa\n");
 }
 

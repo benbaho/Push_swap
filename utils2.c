@@ -15,11 +15,13 @@
 int	stacklen(t_stk *a)
 {
 	int	i;
+	t_stk	*tmp;
 
+	tmp = a;
 	i = 0;
-	while (a)
+	while (tmp)
 	{
-		a = a->next;
+		tmp = tmp->next;
 		i++;
 	}
 	return (i);
@@ -53,11 +55,10 @@ int	checknumber(char **str)
 
 	i = 1;
 	while(str[i])
-	{
+	{	
 		if(ft_atoi2(str[i]) > 2147483647 || ft_atoi2(str[i]) < -2147483648)
 		{
-			ft_printf("Max/Min number\n");
-			return (0);
+			exit(ft_printf("Max/Min number\n"));
 		}
 		i++;
 	}

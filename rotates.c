@@ -12,20 +12,20 @@
 
 #include "push_swap.h"
 
-static void rotates(t_stk **a)
+static void	rotates(t_stk **x)
 {
-	t_stk *tmp;
-	t_stk *free;
+	t_stk	*travel;
+	t_stk	*tmp;
 
-	if (!(*a))
+	if (!x)
 		return ;
-	tmp = *a;
-	free = *a;
-	while (free->next)
-		free = free->next;
-	free->next = tmp;
-	*a = (*a)->next;
-	tmp->next = NULL;
+	travel = *x;
+	tmp = *x;
+	while (travel->next)
+		travel = travel->next;
+	travel->next = tmp;
+	*x = (*x)->next;
+	tmp ->next = NULL;
 }
 
 void ra(t_stk **a)

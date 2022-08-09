@@ -12,17 +12,24 @@
 
 #include "push_swap.h"
 
-static void reverser(t_stk **a)
+static void	reverser(t_stk **x)
 {
-	t_stk	*free;
+	t_stk	*travel;
+	t_stk	*tmp;
+	t_stk	*last;
 
-	if(!(*a))
+	travel = *x;
+	tmp = *x;
+	if (!x || !(travel->next))
 		return ;
-	free = *a;
-	while(free->next)
-		free = free->next;
-	free->next = *a;
-	(*a)->next = NULL;
+	while (travel->next)
+	{
+		last = travel;
+		travel = travel->next;
+	}
+	last->next = 0;
+	travel->next = tmp;
+	*x = travel;
 }
 
 void rra(t_stk **a)

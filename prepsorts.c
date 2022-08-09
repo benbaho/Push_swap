@@ -23,8 +23,8 @@ t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
 	if (ac == 2)
 	{
 		str = ft_split(av[1], ' ');
-		if ((!checknumber(str)))
-			exit (0);
+		if (!checknumber(str))
+			exit(ft_printf("Same number or sorted"));
 		a = pushswap(a, str, 0);
 		a = findindex(a);
 	}
@@ -36,7 +36,7 @@ t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
 		a = findindex(a);
 	}
 	c = stacklen(a);
-	if (c < 6)
+	if (c < 7)
 		minisorting(&a, &b);
 	else
 		radixsorting(&a, &b);

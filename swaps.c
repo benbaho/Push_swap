@@ -12,18 +12,18 @@
 
 #include "push_swap.h"
 
-static t_stk *sx(t_stk *list)
+static t_stk	*sx(t_stk *x)
 {
-	t_stk	*keep;
 	t_stk	*tmp;
+	t_stk	*cup;
 
-	if (list && !(list->next))
-		return (list);
-	keep = list->next;
-	tmp = keep->next;
-	keep->next = list;
-	list->next = tmp;
-	return (keep);
+	if (!x || !(x->next))
+		return (x);
+	tmp = x->next; 
+	cup = tmp->next;
+	tmp->next = x;
+	x->next = cup;
+	return (tmp);
 }
 
 void	sa(t_stk **a)

@@ -12,48 +12,31 @@
 
 #include "push_swap.h"
 
-static int isitsorted(t_stk *a, t_stk *b)
+int	isitsorted(t_stk *a, t_stk *b)
 {
-    t_stk   *tmp;
-    int     index;
+	int		index;
+	t_stk	*tmp;
 
-    tmp = a;
-    index = tmp->index;
-    while (tmp)
-    {
-        if (index > tmp->index)
-            return (1);
-        tmp = tmp->next;
-        index = tmp->index;
-    }
-    tmp = b;
-    index = tmp->index;
-    while (tmp)
-    {
-        if (index < tmp->index)
-            return (1);
-        tmp = tmp->next;
-        index = tmp->index;
-    }
-    return (0);
-}
-
-static int isitsame(t_stk *a, t_stk *b)
-{
-    t_stk   *tmp;
-    int     number;
-
-    tmp = a;
-    number = tmp->number;
-    tmp = tmp->next;
-    while (tmp)
-    {
-        if (number == tmp->number)
-            return (0);
-        number = tmp->number;
-        tmp = tmp->next;
-    }
-    return (1);
+	tmp = a;
+	index = a->index;
+	while (tmp)
+	{
+		if (index > tmp->index)
+			return (1);
+		index = tmp->index;
+		tmp = tmp->next;
+	}
+	if (!b)
+		return (0);
+	tmp = b;
+	index = b->index;
+	while (tmp)
+	{
+		if (index < tmp->index)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }
 
 void   radixsorting(t_stk **a, t_stk **b)
@@ -75,7 +58,7 @@ void   radixsorting(t_stk **a, t_stk **b)
                 break;
         }   
         i++;
-        if (!isitsorted(*a, *b) || !isitsame(*a, *b))
+        if (!isitsorted(*a, *b))
             break;
     }
 }

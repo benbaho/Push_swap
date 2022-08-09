@@ -29,6 +29,7 @@ typedef struct s_stk
 t_stk	*findindex(t_stk *a);
 t_stk	*args(t_stk *a, t_stk *b, int ac, char **av);
 t_stk	*pushswap(t_stk *stk, char **av, int c);
+int 	isitsorted(t_stk *a, t_stk *b);
 int		checknumber(char **str);
 int		stacklen(t_stk *a);
 int 	*getindex(t_stk *a);
