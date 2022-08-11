@@ -12,51 +12,20 @@
 
 #include "push_swap.h"
 
-t_stk	*args(t_stk *a, t_stk *b, int ac, char **av)
+static	void	swap(int *x, int *y)
 {
-	char	**str;
-	int			c;
-	
-	a = 0;
-	b = 0;
-	c = 0;
-	if (ac == 2)
-	{
-		str = ft_split(av[1], ' ');
-		if (!checknumber(str))
-			exit(ft_printf("Same number or sorted"));
-		a = pushswap(a, str, 0);
-		a = findindex(a);
-	}
-	else
-	{
-		if (!(checknumber(av)))
-			exit (0);
-		a =  pushswap(a, av, 1);
-		a = findindex(a);
-	}
-	c = stacklen(a);
-	if (c < 7)
-		minisorting(&a, &b);
-	else
-		radixsorting(&a, &b);
-	return (a);
-}
-
-static void swap(int *x, int *y)
-{
-	int c;
+	int	c;
 
 	c = *x;
 	*x = *y;
 	*y = c;
 }
 
-static void quicksort(int number[], int first, int last)
+static	void	quicksort(int number[], int first, int last)
 {
-	int i;
-	int j;
-	int pivot;
+	int	i;
+	int	j;
+	int	pivot;
 
 	if (first < last)
 	{
@@ -82,7 +51,7 @@ int	*prepsort(t_stk *a, int *i)
 {
 	t_stk	*tmp;
 	int		index;
-	int     c;
+	int		c;
 
 	tmp = a;
 	index = 0;
@@ -92,7 +61,7 @@ int	*prepsort(t_stk *a, int *i)
 		index++;
 		tmp = tmp->next;
 	}
-	i = ft_calloc(sizeof(int), index +  1);
+	i = ft_calloc (sizeof(int), index + 1);
 	tmp = a;
 	while (tmp)
 	{
@@ -112,11 +81,11 @@ t_stk	*findindex(t_stk *a)
 
 	idx = 0;
 	i = prepsort(a, i);
-	tmp = a;  
+	tmp = a;
 	while (tmp)
 	{
 		idx = 0;
-		while(tmp->number != i[idx])
+		while (tmp->number != i[idx])
 		{
 			idx++;
 		}
@@ -125,4 +94,22 @@ t_stk	*findindex(t_stk *a)
 	}
 	free (i);
 	return (a);
+}
+
+int	arginputcontrol(char *input, int *arg)
+{
+	if (input[0] == '0' && !input[1])
+	{
+		*arg = 0;
+		return (1);
+	}
+	if (input[0] == '-' && input[1] == '1' && !input[2])
+	{
+		*arg = -1;
+		return (1);
+	}
+	*arg = ft_atoi(input);
+	if (*arg == 0 || *arg == -1)
+		return (0);
+	return (*arg);
 }

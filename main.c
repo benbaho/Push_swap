@@ -32,23 +32,42 @@ t_stk	*node(t_stk *stk, int c)
 	return (stk);
 }
 
-t_stk	*pushswap(t_stk *stk, char **av, int c)
+t_stk	*args(t_stk *a, int ac, char **av)
 {
-	while (av[c] != NULL)
+	int			number;
+	int			c;
+
+	c = 0;
+	if (!(ac > 2))
 	{
-		stk = node(stk, ft_atoi(av[c]));
-			c++;
+		av = ft_split(av[1], ' ');
+		c--;
 	}
-	return (stk);
+	while (av[++c])
+	{
+		if (!arginputcontrol(av[c], &number) || !control(a, number, 1))
+			exit (ft_printf("hata"));
+		a = node(a, ft_atoi(av[c]));
+	}
+	return (findindex(a));
 }
 
 int	main(int ac, char **av)
 {
 	t_stk	*a;
 	t_stk	*b;
+	int		c;
 
+	a = 0;
+	b = 0;
 	if (!(ac > 1))
 		return (0);
-		a = args (a, b, ac, av);
-
+	a = args (a, ac, av);
+	c = stacklen(a, 0);
+	if (c < 7)
+		minisorting(&a, &b);
+	else
+		radixsorting(&a, &b);
+	frees(a);
+	frees(b);
 }

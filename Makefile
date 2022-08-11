@@ -4,11 +4,12 @@ obj = $(src:.c=.o)
 flags = -Wall -Wextra -Werror 
 PRINTF	= printf/libftprintf.a
 LIBFT	= libft/libft.a
+CC	= gcc -g
 
 all : $(name) 
 
 $(name): $(obj) $(PRINTF) $(LIBFT)
-		gcc $(flags) $(obj) -o $(name) ./printf/libftprintf.a ./libft/libft.a
+		$(CC) $(flags) $(obj) -o $(name) ./printf/libftprintf.a ./libft/libft.a
 
 $(PRINTF): 
 	make -C printf

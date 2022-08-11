@@ -15,8 +15,8 @@
 void	minisorting(t_stk **a, t_stk **b)
 {
 	int	len;
-	
-	len = stacklen(*a);
+
+	len = stacklen(*a, 0);
 	if (len == 1)
 		return ;
 	else if (len == 2)
@@ -85,17 +85,17 @@ static void	seperate(t_stk **a, t_stk **b, int max, int len)
 		}
 		if ((*a)->index > (*a)->next->index)
 			sa(a);
-		if ((stacklen(*a) / 2) < control(*a, max, 0))
+		if ((stacklen(*a, 0) / 2) < control(*a, max, 0))
 			rra(a);
 		else
-			ra(a);	
+			ra(a);
 	}
-
 }
 
 void	undersix(t_stk **a, t_stk **b, int len)
 {
 	int	i;
+
 	seperate(a, b, len - 1, len - 3);
 	if (len == 4 || len == 5)
 		triple(a);
@@ -104,7 +104,7 @@ void	undersix(t_stk **a, t_stk **b, int len)
 		triple(a);
 		triple(b);
 	}
-	i = stacklen(*b);
+	i = stacklen(*b, 0);
 	while (i--)
 	{
 		pa(a, b);

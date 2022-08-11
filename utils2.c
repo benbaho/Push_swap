@@ -12,13 +12,11 @@
 
 #include "push_swap.h"
 
-int	stacklen(t_stk *a)
+int	stacklen(t_stk *a, int i)
 {
-	int	i;
 	t_stk	*tmp;
 
 	tmp = a;
-	i = 0;
 	while (tmp)
 	{
 		tmp = tmp->next;
@@ -48,57 +46,47 @@ void	printstack(t_stk *a, t_stk *b)
 	ft_printf("\n");
 }
 
-int	checknumber(char **str)
+int	*getindex(t_stk *a)
 {
-	int	i;
-    int tmp;
+	t_stk	*tmp;
+	int		i;
+	int		*idx;
 
-	i = 1;
-	while(str[i])
-	{	
-		if(ft_atoi2(str[i]) > 2147483647 || ft_atoi2(str[i]) < -2147483648)
-		{
-			exit(ft_printf("Max/Min number\n"));
-		}
-		i++;
+	i = 0;
+	tmp = a;
+	idx = ft_calloc(sizeof(int), stacklen(a, 0) + 1);
+	while (tmp)
+	{
+		idx[i++] = tmp->index;
+		tmp = tmp->next;
+	}
+	return (idx);
+}
+
+int	isitsame(t_stk *a, int number)
+{
+	t_stk	*tmp;
+
+	tmp = a;
+	while (tmp)
+	{
+		if (tmp->number == number)
+			return (0);
+		tmp = tmp->next;
 	}
 	return (1);
 }
 
-int *getindex(t_stk *a)
+void	frees(t_stk	*a)
 {
-    t_stk   *tmp;
-    int     i;
-    int     *idx;
+	t_stk	*tmp;
+	t_stk	*del;
 
-    i = 0;
-    tmp = a;
-    idx = ft_calloc(sizeof(int),stacklen(a) + 1);
-    while (tmp)
-    {
-        idx[i++] = tmp->index;
-        tmp = tmp->next;
-    }
-    return (idx);
-}
-
-long long   ft_atoi2(const char *str)
-{
-	long long int	number;
-	int				sign;
-
-	number = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '+' || *str == '-')
-		str++;
-	while (*str >= '0' && *str <= '9')
+	tmp = a;
+	while (a)
 	{
-		number = (number * 10) + (*str - '0') * sign;
-		str++;
+		del = tmp;
+		tmp = tmp->next;
+		free (del);
 	}
-	return (number);
 }

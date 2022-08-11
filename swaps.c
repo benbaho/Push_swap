@@ -19,7 +19,7 @@ static t_stk	*sx(t_stk *x)
 
 	if (!x || !(x->next))
 		return (x);
-	tmp = x->next; 
+	tmp = x->next;
 	cup = tmp->next;
 	tmp->next = x;
 	x->next = cup;
@@ -32,7 +32,7 @@ void	sa(t_stk **a)
 	ft_printf("sa\n");
 }
 
-void 	sb(t_stk **b)
+void	sb(t_stk **b)
 {
 	*b = sx(*b);
 	ft_printf("sb\n");
@@ -44,6 +44,3 @@ void	ss(t_stk **a, t_stk **b)
 	*b = sx(*b);
 	ft_printf("ss\n");
 }
-
-
-

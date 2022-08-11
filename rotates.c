@@ -28,45 +28,21 @@ static void	rotates(t_stk **x)
 	tmp ->next = NULL;
 }
 
-void ra(t_stk **a)
+void	ra(t_stk **a)
 {
 	rotates(a);
 	ft_printf("ra\n");
 }
 
-void rb(t_stk **b)
+void	rb(t_stk **b)
 {
 	rotates(b);
 	ft_printf("rb\n");
 }
 
-void rr(t_stk **a, t_stk **b)
+void	rr(t_stk **a, t_stk **b)
 {
 	rotates(a);
 	rotates(b);
 	ft_printf("rr\n");
 }
-
-void rotatesn(t_stk **a, t_stk **b, int repeat, char mod)
-{
-	if (mod == 'a' || mod == 'A')
-	{
-		while (--repeat)
-			rotates(a);
-	}
-	else if (mod == 'b' || mod == 'B')
-	{
-		while (--repeat)
-			rotates(b);
-	}	
-	else if (mod == 'r' || mod == 'R')
-	{
-		while (--repeat)
-			rotates(a);
-			rotates(b);
-	}
-}
-
-
-	
-
