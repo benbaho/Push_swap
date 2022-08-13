@@ -83,7 +83,7 @@ void	frees(t_stk	*a)
 	t_stk	*del;
 
 	tmp = a;
-	while (a)
+	while (tmp)
 	{
 		del = tmp;
 		tmp = tmp->next;

@@ -16,7 +16,7 @@ t_stk	*node(t_stk *stk, int c)
 {
 	t_stk	*new;
 	t_stk	*tmp;
-
+	
 	new = malloc(sizeof(t_stk));
 	if (!new && !stk)
 		exit(0);
@@ -32,22 +32,19 @@ t_stk	*node(t_stk *stk, int c)
 	return (stk);
 }
 
-t_stk	*args(t_stk *a, int ac, char **av)
+t_stk	*args(t_stk *a, int ac, char **av, int c)
 {
 	int			number;
-	int			c;
-
-	c = 0;
-	if (!(ac > 2))
-	{
+	
+	if (ac == 2)
 		av = ft_split(av[1], ' ');
-		c--;
-	}
+	else
+		c++;
 	while (av[++c])
 	{
-		if (!arginputcontrol(av[c], &number) || !control(a, number, 1))
-			exit (ft_printf("hata"));
-		a = node(a, ft_atoi(av[c]));
+		if (!argcontrol(av[c], &number) || !control(a, number, 1))
+				exit (ft_printf("Error\n"));
+		a = node(a, number);
 	}
 	return (findindex(a));
 }
@@ -56,18 +53,20 @@ int	main(int ac, char **av)
 {
 	t_stk	*a;
 	t_stk	*b;
-	int		c;
+	int		len;
 
 	a = 0;
 	b = 0;
 	if (!(ac > 1))
 		return (0);
-	a = args (a, ac, av);
-	c = stacklen(a, 0);
-	if (c < 7)
-		minisorting(&a, &b);
+	a = args (a, ac, av, -1);
+	len = stacklen(a, 0);
+	if (!issorted(a, b))
+		return (0);
+	if (len < 7)
+		minisorting(&a, &b, len);
 	else
-		radixsorting(&a, &b);
+		radixsorting(&a, &b, 0, len);
 	frees(a);
 	frees(b);
 }

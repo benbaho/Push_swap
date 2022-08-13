@@ -12,32 +12,30 @@
 
 #include "push_swap.h"
 
-//! bit control
-int	b_control(t_stk *a, int swipe)
+static int	b_control(t_stk *a, int size)
 {
 	t_stk	*tmp;
 
 	tmp = a;
 	while (tmp)
 	{
-		if ((tmp->index) >> swipe & 1)
+		if ((tmp->index) >> size & 1)
 			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
 }
 
-//! reverse push
-static int	r_push(t_stk **a, t_stk **b, int swipe)
+static int	r_push(t_stk **a, t_stk **b, int size)
 {
-	int	i;
+	int	len;
 
-	i = stacklen(*b, 0);
-	if (!(i))
+	len = stacklen(*b, 0);
+	if (!(len))
 		return (0);
-	while (i--)
+	while (len--)
 	{
-		if ((*b)->index >> (swipe) & 1)
+		if ((*b)->index >> (size) & 1)
 			pa(a, b);
 		else
 			rb(b);
@@ -72,25 +70,24 @@ static	int	isitsorted(t_stk *a, t_stk *b)
 	return (0);
 }
 
-void	radixsorting(t_stk **a, t_stk **b)
+void	radixsorting(t_stk **a, t_stk **b, int size, int len)
 {
-	int	size;
-	int	i;
-
-	i = 0;
-	size = stacklen(*a, 0);
 	while (1)
 	{
-		while (size--)
+		len = stacklen(*a, 0);
+		while (len--)
 		{
-			if ((*a)->index >> i & 1)
+			if (((*a)->index) >> size & 1)
 				ra(a);
 			else
+			{
 				pb(a, b);
-			if (!isitsorted(*a,*b))
+				continue ;
+			}
+			if (!isitsorted(*a, *b))
 				break ;
 		}
-		i++;
+		size++;
 		if (!isitsorted(*a, *b) || !b_control(*a, size) || !r_push(a, b, size))
 			break ;
 	}

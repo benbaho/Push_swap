@@ -12,11 +12,8 @@
 
 #include "push_swap.h"
 
-void	minisorting(t_stk **a, t_stk **b)
+void	minisorting(t_stk **a, t_stk **b, int len)
 {
-	int	len;
-
-	len = stacklen(*a, 0);
 	if (len == 1)
 		return ;
 	else if (len == 2)

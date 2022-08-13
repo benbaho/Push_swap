@@ -53,21 +53,14 @@ int	*prepsort(t_stk *a, int *i)
 	int		index;
 	int		c;
 
-	tmp = a;
-	index = 0;
-	c = 0;
-	while (tmp)
-	{
-		index++;
-		tmp = tmp->next;
-	}
+	index = stacklen(a, 0);
 	i = ft_calloc (sizeof(int), index + 1);
 	tmp = a;
+	c = 0;     
 	while (tmp)
 	{
-		i[c] = tmp->number;
+		i[c++] = tmp->number;
 		tmp = tmp->next;
-		c++;
 	}
 	quicksort(i, 0, index - 1);
 	return (i);
@@ -96,7 +89,7 @@ t_stk	*findindex(t_stk *a)
 	return (a);
 }
 
-int	arginputcontrol(char *input, int *arg)
+int	argcontrol(char *input, int *arg)
 {
 	if (input[0] == '0' && !input[1])
 	{
@@ -112,4 +105,31 @@ int	arginputcontrol(char *input, int *arg)
 	if (*arg == 0 || *arg == -1)
 		return (0);
 	return (*arg);
+}
+
+int	issorted(t_stk *a, t_stk *b)
+{
+	int		index;
+	t_stk	*tmp;
+
+	tmp = a;
+	index = a->index;
+	while (tmp)
+	{
+		if (index > tmp->index)
+			return (1);
+		index = tmp->index;
+		tmp = tmp->next;
+	}
+	if (!b)
+		return (0);
+	tmp = b;
+	index = b->index;
+	while (tmp)
+	{
+		if (index < tmp->index)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
 }

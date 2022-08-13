@@ -25,18 +25,19 @@ typedef struct s_stk
 	struct s_stk	*next;
 }	t_stk;
 
-t_stk	*args(t_stk *a, int ac, char **av);
+t_stk	*args(t_stk *a, int ac, char **av, int c);
 t_stk	*node(t_stk *stk, int c);
 t_stk	*findindex(t_stk *a);
 
 int		*prepsort(t_stk *a, int *i);
-int		arginputcontrol(char *input, int *arg);
+int		argcontrol(char *input, int *arg);
 int		control(t_stk *a, int number, int mod);
 int		stacklen(t_stk *a, int i);
 int		*getindex(t_stk *a);
+int		issorted(t_stk *a, t_stk *b);
 
-void	radixsorting(t_stk **a, t_stk **b);
-void	minisorting(t_stk **a, t_stk **b);
+void	radixsorting(t_stk **a, t_stk **b, int size, int len);
+void	minisorting(t_stk **a, t_stk **b, int len);
 void	undersix(t_stk **a, t_stk **b, int len);
 void	printstack(t_stk *a, t_stk *b);
 void	frees(t_stk	*a);
