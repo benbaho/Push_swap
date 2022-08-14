@@ -1,5 +1,6 @@
 # Push_swap
 
 
-Hello world. Push_swap is loading... (Radix)
+Hello world. Push_swap almost has been done... (Radix)
+
 

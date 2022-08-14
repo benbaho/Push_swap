@@ -46,7 +46,7 @@ t_stk	*args(t_stk *a, int ac, char **av, int c)
 				exit (ft_printf("Error\n"));
 		a = node(a, number);
 	}
-	return (findindex(a));
+	return (findindex(a, 0));
 }
 
 int	main(int ac, char **av)

@@ -5,45 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdurmus <bdurmus@student.42kocaeli.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 20:46:57 by bdurmus           #+#    #+#             */
-/*   Updated: 2022/08/08 20:46:57 by bdurmus          ###   ########.fr       */
+/*   Created: 2022/08/14 14:48:42 by bdurmus           #+#    #+#             */
+/*   Updated: 2022/08/14 14:53:34 by bdurmus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stacklen(t_stk *a, int i)
+int	issorted(t_stk *a, t_stk *b)
+{
+	int		index;
+	t_stk	*tmp;
+
+	tmp = a;
+	index = a->index;
+	while (tmp)
+	{
+		if (index > tmp->index)
+			return (1);
+		index = tmp->index;
+		tmp = tmp->next;
+	}
+	if (!b)
+		return (0);
+	tmp = b;
+	index = b->index;
+	while (tmp)
+	{
+		if (index < tmp->index)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int	isitsame(t_stk *a, int number)
 {
 	t_stk	*tmp;
 
 	tmp = a;
 	while (tmp)
 	{
+		if (tmp->number == number)
+			return (0);
 		tmp = tmp->next;
-		i++;
 	}
-	return (i);
-}
-
-void	printstack(t_stk *a, t_stk *b)
-{
-	ft_printf("a : ");
-	while (a)
-	{
-		ft_printf("%d(%d)", a->number, a->index);
-		a = a->next;
-		if (a)
-			ft_printf(" - ");
-	}
-	ft_printf("\nb : ");
-	while (b)
-	{
-		ft_printf("%d(%d)", b->number, b->index);
-		b = b->next;
-		if (b)
-			ft_printf(" - ");
-	}
-	ft_printf("\n");
+	return (1);
 }
 
 int	*getindex(t_stk *a)
@@ -63,30 +70,20 @@ int	*getindex(t_stk *a)
 	return (idx);
 }
 
-int	isitsame(t_stk *a, int number)
+int	argcontrol(char *input, int *arg)
 {
-	t_stk	*tmp;
-
-	tmp = a;
-	while (tmp)
+	if (input[0] == '0' && !input[1])
 	{
-		if (tmp->number == number)
-			return (0);
-		tmp = tmp->next;
+		*arg = 0;
+		return (1);
 	}
-	return (1);
-}
-
-void	frees(t_stk	*a)
-{
-	t_stk	*tmp;
-	t_stk	*del;
-
-	tmp = a;
-	while (tmp)
+	if (input[0] == '-' && input[1] == '1' && !input[2])
 	{
-		del = tmp;
-		tmp = tmp->next;
-		free (del);
+		*arg = -1;
+		return (1);
 	}
+	*arg = ft_atoi(input);
+	if (*arg == 0 || *arg == -1)
+		return (0);
+	return (*arg);
 }

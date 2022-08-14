@@ -47,16 +47,14 @@ static	void	quicksort(int number[], int first, int last)
 	}
 }
 
-int	*prepsort(t_stk *a, int *i)
+int	*prepsort(t_stk *a, int *i, int c)
 {
 	t_stk	*tmp;
 	int		index;
-	int		c;
 
 	index = stacklen(a, 0);
 	i = ft_calloc (sizeof(int), index + 1);
 	tmp = a;
-	c = 0;     
 	while (tmp)
 	{
 		i[c++] = tmp->number;
@@ -66,14 +64,12 @@ int	*prepsort(t_stk *a, int *i)
 	return (i);
 }
 
-t_stk	*findindex(t_stk *a)
+t_stk	*findindex(t_stk *a, int idx)
 {
 	t_stk	*tmp;
 	int		*i;
-	int		idx;
 
-	idx = 0;
-	i = prepsort(a, i);
+	i = prepsort(a, i, 0);
 	tmp = a;
 	while (tmp)
 	{
@@ -87,49 +83,4 @@ t_stk	*findindex(t_stk *a)
 	}
 	free (i);
 	return (a);
-}
-
-int	argcontrol(char *input, int *arg)
-{
-	if (input[0] == '0' && !input[1])
-	{
-		*arg = 0;
-		return (1);
-	}
-	if (input[0] == '-' && input[1] == '1' && !input[2])
-	{
-		*arg = -1;
-		return (1);
-	}
-	*arg = ft_atoi(input);
-	if (*arg == 0 || *arg == -1)
-		return (0);
-	return (*arg);
-}
-
-int	issorted(t_stk *a, t_stk *b)
-{
-	int		index;
-	t_stk	*tmp;
-
-	tmp = a;
-	index = a->index;
-	while (tmp)
-	{
-		if (index > tmp->index)
-			return (1);
-		index = tmp->index;
-		tmp = tmp->next;
-	}
-	if (!b)
-		return (0);
-	tmp = b;
-	index = b->index;
-	while (tmp)
-	{
-		if (index < tmp->index)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
 }

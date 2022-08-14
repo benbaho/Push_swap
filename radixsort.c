@@ -43,33 +43,6 @@ static int	r_push(t_stk **a, t_stk **b, int size)
 	return (1);
 }
 
-static	int	isitsorted(t_stk *a, t_stk *b)
-{
-	int		index;
-	t_stk	*tmp;
-
-	tmp = a;
-	index = a->index;
-	while (tmp)
-	{
-		if (index > tmp->index)
-			return (1);
-		index = tmp->index;
-		tmp = tmp->next;
-	}
-	if (!b)
-		return (0);
-	tmp = b;
-	index = b->index;
-	while (tmp)
-	{
-		if (index < tmp->index)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-
 void	radixsorting(t_stk **a, t_stk **b, int size, int len)
 {
 	while (1)
@@ -84,11 +57,11 @@ void	radixsorting(t_stk **a, t_stk **b, int size, int len)
 				pb(a, b);
 				continue ;
 			}
-			if (!isitsorted(*a, *b))
+			if (!issorted(*a, *b))
 				break ;
 		}
 		size++;
-		if (!isitsorted(*a, *b) || !b_control(*a, size) || !r_push(a, b, size))
+		if (!issorted(*a, *b) || !b_control(*a, size) || !r_push(a, b, size))
 			break ;
 	}
 	while (*b)
