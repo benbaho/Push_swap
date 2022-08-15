@@ -16,7 +16,7 @@ t_stk	*node(t_stk *stk, int c)
 {
 	t_stk	*new;
 	t_stk	*tmp;
-	
+
 	new = malloc(sizeof(t_stk));
 	if (!new && !stk)
 		exit(0);
@@ -35,7 +35,7 @@ t_stk	*node(t_stk *stk, int c)
 t_stk	*args(t_stk *a, int ac, char **av, int c)
 {
 	int			number;
-	
+
 	if (ac == 2)
 		av = ft_split(av[1], ' ');
 	else
@@ -43,7 +43,7 @@ t_stk	*args(t_stk *a, int ac, char **av, int c)
 	while (av[++c])
 	{
 		if (!argcontrol(av[c], &number) || !control(a, number, 1))
-				exit (ft_printf("Error\n"));
+			exit (ft_printf("Error\n"));
 		a = node(a, number);
 	}
 	if (ac == 2)

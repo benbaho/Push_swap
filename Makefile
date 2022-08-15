@@ -6,7 +6,6 @@ PRINTF	= printf/libftprintf.a
 LIBFT	= libft/libft.a
 CC	= gcc -g
 
-#	TMS=100; ARG=$(ruby rnd.rb $TMS); ./push_swap $ARG | ./checker $ARG; ./push_swap $ARG | wc -l
 
 all : $(name) 
 

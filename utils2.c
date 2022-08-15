@@ -6,7 +6,7 @@
 /*   By: bdurmus <bdurmus@student.42kocaeli.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 14:48:42 by bdurmus           #+#    #+#             */
-/*   Updated: 2022/08/14 14:53:34 by bdurmus          ###   ########.fr       */
+/*   Updated: 2022/08/15 16:27:06 by bdurmus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,6 @@ int	issorted(t_stk *a, t_stk *b)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-int	isitsame(t_stk *a, int number)
-{
-	t_stk	*tmp;
-
-	tmp = a;
-	while (tmp)
-	{
-		if (tmp->number == number)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
 }
 
 int	*getindex(t_stk *a)
