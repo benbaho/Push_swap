@@ -48,6 +48,7 @@ void	triple(t_stk **a)
 		sa(a);
 		rra(a);
 	}
+	free (i);
 }
 
 int	control(t_stk *a, int number, int mod)
@@ -61,7 +62,7 @@ int	control(t_stk *a, int number, int mod)
 	{
 		if (tmp->index == number && mod == 0)
 			return (i);
-		if (tmp->number == number)
+		if (tmp->number == number && mod != 0)
 			return (0);
 		tmp = tmp->next;
 		i++;
@@ -80,8 +81,6 @@ static void	seperate(t_stk **a, t_stk **b, int max, int len)
 			len--;
 			continue ;
 		}
-		if ((*a)->index > (*a)->next->index)
-			sa(a);
 		if ((stacklen(*a, 0) / 2) < control(*a, max, 0))
 			rra(a);
 		else

@@ -6,7 +6,6 @@ PRINTF	= printf/libftprintf.a
 LIBFT	= libft/libft.a
 CC	= gcc -g
 
-#	Scripti çalıştırmak için; TSM:üretilecek sayı miktarı
 #	TMS=100; ARG=$(ruby rnd.rb $TMS); ./push_swap $ARG | ./checker $ARG; ./push_swap $ARG | wc -l
 
 all : $(name) 
@@ -25,11 +24,14 @@ re: fclean all
 
 clean:
 	rm -rf $(obj)
+
 fclean: clean
 	rm -rf $(name)
 	@make fclean -C printf
 	@make fclean -C libft 
+
 norm: 
 	norminette *.c
 	norminette *.h
+
 .PHONY: clean norm fclean all re

@@ -46,6 +46,13 @@ t_stk	*args(t_stk *a, int ac, char **av, int c)
 				exit (ft_printf("Error\n"));
 		a = node(a, number);
 	}
+	if (ac == 2)
+	{
+		ac = -1;
+		while (av[++ac])
+			free (av[ac]);
+		free (av);
+	}
 	return (findindex(a, 0));
 }
 

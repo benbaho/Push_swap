@@ -47,7 +47,7 @@ static	void	quicksort(int number[], int first, int last)
 	}
 }
 
-int	*prepsort(t_stk *a, int *i, int c)
+static int	*prepsort(t_stk *a, int *i, int c)
 {
 	t_stk	*tmp;
 	int		index;
@@ -75,9 +75,7 @@ t_stk	*findindex(t_stk *a, int idx)
 	{
 		idx = 0;
 		while (tmp->number != i[idx])
-		{
 			idx++;
-		}
 		tmp->index = idx;
 		tmp = tmp->next;
 	}

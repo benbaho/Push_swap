@@ -30,7 +30,6 @@ t_stk	*findindex(t_stk *a, int idx);
 t_stk	*node(t_stk *stk, int c);
 
 int		control(t_stk *a, int number, int mod);
-int		*prepsort(t_stk *a, int *i, int c);
 int		argcontrol(char *input, int *arg);
 int		issorted(t_stk *a, t_stk *b);
 int		stacklen(t_stk *a, int i);
