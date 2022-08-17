@@ -79,9 +79,8 @@ static void	seperate(t_stk **a, t_stk **b, int max, int len)
 			pb(a, b);
 			max--;
 			len--;
-			continue ;
 		}
-		if ((stacklen(*a, 0) / 2) < control(*a, max, 0))
+		else if ((stacklen(*a, 0) / 2) < control(*a, max, 0))
 			rra(a);
 		else
 			ra(a);
